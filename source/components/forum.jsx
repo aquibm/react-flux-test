@@ -1,5 +1,9 @@
 import React from 'react';
+
 import { ForumHeader } from './forumHeader.jsx';
+import { ForumQuestion } from './forumQuestion.jsx';
+import { ForumAnswers } from './forumAnswers.jsx';
+import { ForumAddAnswerBox } from './forumAddAnswerBox.jsx';
 
 export class Forum extends React.Component {
     constructor(props) {
@@ -26,7 +30,15 @@ export class Forum extends React.Component {
     render() {
         return (
             <div>
-                <ForumHeader allAnswers={this.state.allAnswers} />
+                <ForumHeader />
+
+                <div className="container">
+                    <ForumQuestion />
+                    <hr />
+                    <ForumAnswers allAnswers={ this.state.allAnswers } />
+                    <hr />
+                    <ForumAddAnswerBox />
+                </div>
             </div>
         );
     }
