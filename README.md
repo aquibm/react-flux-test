@@ -2,7 +2,7 @@
 
 Following along with this pluralsight course with some slight changes.
 
-* Use of WebPack to transpile and bundle jsx components and other app files.
+* Use of WebPack to automate transpilation and bundling of jsx components and other app files.
 * Using ES6 syntax.
 
 ## TODO
