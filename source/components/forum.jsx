@@ -4,6 +4,7 @@ import { ForumHeader } from './forumHeader.jsx';
 import { ForumQuestion } from './forumQuestion.jsx';
 import { ForumAnswers } from './forumAnswers.jsx';
 import { ForumAddAnswerBox } from './forumAddAnswerBox.jsx';
+import AppDispatcher from '../data/appDispatcher.js';
 
 export class Forum extends React.Component {
     constructor(props) {
@@ -25,6 +26,15 @@ export class Forum extends React.Component {
                 }
             }
         };
+
+        this.onAddAnswer = this.onAddAnswer.bind(this);
+    }
+
+    onAddAnswer(answerText) {
+        AppDispatcher.dispatch({
+            actionType: 'FORUM_ANSWER_ADDED',
+            newAnswer: answerText
+        });
     }
 
     render() {
@@ -37,7 +47,7 @@ export class Forum extends React.Component {
                     <hr />
                     <ForumAnswers allAnswers={ this.state.allAnswers } />
                     <hr />
-                    <ForumAddAnswerBox />
+                    <ForumAddAnswerBox onAddAnswer={ this.onAddAnswer }/>
                 </div>
             </div>
         );
