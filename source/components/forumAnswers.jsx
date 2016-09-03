@@ -5,15 +5,6 @@ import AppDispatcher from '../data/appDispatcher.js';
 export class ForumAnswers extends React.Component {
     constructor(props) {
         super(props);
-
-        this.answers = [];
-
-        for (var key in this.props.allAnswers) {
-            this.answers.push(
-                <ForumAnswer key={key} id={key} answer={ this.props.allAnswers[key] } onMarkCorrect={ this.onMarkCorrect } />
-            );
-        }
-
         this.onMarkCorrect = this.onMarkCorrect.bind(this);
     }
 
@@ -25,6 +16,14 @@ export class ForumAnswers extends React.Component {
     }
 
     render() {
+        this.answers = [];
+        
+        for (var key in this.props.allAnswers) {
+            this.answers.push(
+                <ForumAnswer key={key} id={key} answer={ this.props.allAnswers[key] } onMarkCorrect={ this.onMarkCorrect } />
+            );
+        }
+
         return (
             <div>
                 { this.answers }

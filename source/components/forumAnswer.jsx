@@ -15,14 +15,23 @@ export class ForumAnswer extends React.Component {
 
     render() {
         var answer = this.props.answer;
+        var markAnswerAsCorrectLink;
+
+        if(!answer.correct) {
+            markAnswerAsCorrectLink = (
+                <div className="pull-right">
+                    <small><a href="#" onClick={ this.markCorrect }>Mark as Correct</a></small>
+                </div>
+            );
+        }
+
+        var classNames = 'panel-body' + (answer.correct ? ' bg-success' : '');
 
         return (
                 <div className="panel panel-default">
-                    <div className="panel-body">
+                    <div className={ classNames }>
                         { answer.body }
-                        <div className="pull-right">
-                            <small><a href="#" onClick={ this.markCorrect }>Mark as Correct</a></small>
-                        </div>
+                        { markAnswerAsCorrectLink }
                     </div>
                 </div>
         );

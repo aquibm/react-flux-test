@@ -15,6 +15,10 @@ export class ForumAddAnswerBox extends React.Component {
 
     addAnswer() {
         this.props.onAddAnswer(this.state.value);
+
+        this.setState({
+            value: ''
+        });
     }
 
     onChange(event) {
@@ -27,7 +31,7 @@ export class ForumAddAnswerBox extends React.Component {
         return (
             <div>
                 <h4>Add an answer</h4>
-                <textarea id="addAnswer" className="col-md-6 col-xs-8" onChange={ this.onChange }></textarea>
+                <textarea id="addAnswer" className="col-md-6 col-xs-8" value={ this.state.value } onChange={ this.onChange }></textarea>
                 &nbsp; <input type="button" className="btn btn-primary" value="Add" onClick={ this.addAnswer } />
             </div>
         );

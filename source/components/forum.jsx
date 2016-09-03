@@ -5,29 +5,18 @@ import { ForumQuestion } from './forumQuestion.jsx';
 import { ForumAnswers } from './forumAnswers.jsx';
 import { ForumAddAnswerBox } from './forumAddAnswerBox.jsx';
 import AppDispatcher from '../data/appDispatcher.js';
+import AppStore from '../data/appStore.js';
 
 export class Forum extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            allAnswers: {
-                "1": {
-                    body: "Isn't that about time travel?",
-                    correct: false
-                },
-                "2": {
-                    body: "React and Flux are a tool and methodologies for building the front end of web applications.",
-                    correct: false
-                },
-                "3": {
-                    body: "React is a synonym for 'respond'",
-                    correct: false
-                }
-            }
+            allAnswers: AppStore.getAnswers()
         };
 
         this.onAddAnswer = this.onAddAnswer.bind(this);
+        this.onChange = this.onChange.bind(this);
     }
 
     onAddAnswer(answerText) {
@@ -35,6 +24,20 @@ export class Forum extends React.Component {
             actionType: 'FORUM_ANSWER_ADDED',
             newAnswer: answerText
         });
+    }
+
+    onChange() {
+        this.setState({
+            allAnswers: AppStore.getAnswers()
+        });
+    }
+
+    componentDidMount() {
+        AppStore.addChangeListener(this.onChange);
+    }
+
+    componentWillUnmount() {
+        AppStore.removeListener(this.onChange);
     }
 
     render() {
