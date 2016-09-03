@@ -1,6 +1,8 @@
-import FakeAnswerData from './fakeAnswerData';
 import { EventEmitter } from '../eventEmitter.js';
+
+import FakeAnswerData from './fakeAnswerData';
 import AppDispatcher from './appDispatcher.js';
+import AppConstants from '../constants/appConstants.js';
 
 class Store extends EventEmitter {
     constructor() {
@@ -8,13 +10,13 @@ class Store extends EventEmitter {
 
         AppDispatcher.register((action) => {
             switch (action.actionType) {
-                case 'FORUM_ANSWER_ADDED': {
+                case AppConstants.FORUM_ANSWER_ADDED: {
                     console.log('Answer added');
                     this.addAnswer(action.newAnswer);
                     break;
                 }
 
-                case 'FORUM_ANSWER_MARKED_CORRECT': {
+                case AppConstants.FORUM_ANSWER_MARKED_CORRECT: {
                     console.log('Answer marked correct');
                     this.markAsCorrect(action.id);
                 }

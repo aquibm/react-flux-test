@@ -1,6 +1,6 @@
 import React from 'react';
 import { ForumAnswer } from './forumAnswer.jsx';
-import AppDispatcher from '../data/appDispatcher.js';
+import AppActions from '../actions/appActions.js';
 
 export class ForumAnswers extends React.Component {
     constructor(props) {
@@ -9,15 +9,12 @@ export class ForumAnswers extends React.Component {
     }
 
     onMarkCorrect(id) {
-        AppDispatcher.dispatch({
-            actionType: 'FORUM_ANSWER_MARKED_CORRECT',
-            id: id
-        });
+        AppActions.markAnswerCorrect(id);
     }
 
     render() {
         this.answers = [];
-        
+
         for (var key in this.props.allAnswers) {
             this.answers.push(
                 <ForumAnswer key={key} id={key} answer={ this.props.allAnswers[key] } onMarkCorrect={ this.onMarkCorrect } />

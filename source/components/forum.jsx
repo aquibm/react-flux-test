@@ -4,7 +4,7 @@ import { ForumHeader } from './forumHeader.jsx';
 import { ForumQuestion } from './forumQuestion.jsx';
 import { ForumAnswers } from './forumAnswers.jsx';
 import { ForumAddAnswerBox } from './forumAddAnswerBox.jsx';
-import AppDispatcher from '../data/appDispatcher.js';
+import AppActions from '../actions/appActions.js';
 import AppStore from '../data/appStore.js';
 
 export class Forum extends React.Component {
@@ -20,10 +20,7 @@ export class Forum extends React.Component {
     }
 
     onAddAnswer(answerText) {
-        AppDispatcher.dispatch({
-            actionType: 'FORUM_ANSWER_ADDED',
-            newAnswer: answerText
-        });
+        AppActions.addNewAnswer(answerText);
     }
 
     onChange() {
